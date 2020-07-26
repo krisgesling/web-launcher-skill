@@ -2,6 +2,7 @@ import subprocess
 
 from adapt.intent import IntentBuilder
 from mycroft import MycroftSkill, intent_handler
+from mycroft.messagebus.message import Message
 
 
 class WebLauncher(MycroftSkill):
@@ -42,8 +43,12 @@ class WebLauncher(MycroftSkill):
         """
         requested_site = message.data.get('SiteName')
         if requested_site in self.sites:
-            args = ['xdg-open', self.sites[requested_site]]
+            site_url = self.sites[requested_site]
+            args = ['xdg-open', site_url]
             current_process = subprocess.Popen(args)
+            self.bus.emit(Message('skill.weblauncher.opening', {
+                                      'site_name': requested_site,
+                                      'site_url': site_url }))
         else:
             # This should never actually be triggered
             self.speak_dialog('not.found')
