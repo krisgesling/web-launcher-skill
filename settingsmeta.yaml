@@ -2,31 +2,51 @@ skillMetadata:
    sections:
       - name: Custom url 1
         fields:
-          - name: name_one
+          - name: name_1
             type: text
             label: The spoken name of the website
             value:
-          - name: url_one
+          - name: url_1
             type: text
             label: The custom url
             value:
       - name: Custom url 2
         fields:
-          - name: name_two
+          - name: name_2
             type: text
             label: The spoken name of the website
             value:
-          - name: url_two
+          - name: url_2
             type: text
             label: The custom url
             value:
       - name: Custom url 3
         fields:
-          - name: name_three
+          - name: name_3
             type: text
             label: The spoken name of the website
             value:
-          - name: url_three
+          - name: url_3
+            type: text
+            label: The custom url
+            value:
+      - name: Custom url 4
+        fields:
+          - name: name_4
+            type: text
+            label: The spoken name of the website
+            value:
+          - name: url_4
+            type: text
+            label: The custom url
+            value:
+      - name: Custom url 5
+        fields:
+          - name: name_5
+            type: text
+            label: The spoken name of the website
+            value:
+          - name: url_5
             type: text
             label: The custom url
             value:
