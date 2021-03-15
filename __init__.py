@@ -13,6 +13,8 @@ class WebLauncher(MycroftSkill):
     def initialize(self):
         self.settings_change_callback = self.on_settings_changed
         self.on_settings_changed()
+        if self.gui.connected:
+            self.register_intent('CloseSite.intent', self.handle_close_site)
 
     def on_settings_changed(self):
         """Load all custom site settings and register names as vocab.
@@ -45,7 +47,7 @@ class WebLauncher(MycroftSkill):
         if requested_site in self.sites:
             site_url = self.sites[requested_site]
             if self.gui.connected:
-                self.gui.show_url(site_url)
+                self.gui.show_url(site_url, override_idle=True)
             else:
                 args = ['xdg-open', site_url]
                 current_process = subprocess.Popen(args)
@@ -55,6 +57,11 @@ class WebLauncher(MycroftSkill):
         else:
             # This should never actually be triggered
             self.speak_dialog('not.found')
+
+    def handle_close_site(self, message):
+        """Close the website if opened on a Mycroft based GUI."""
+        self.gui.release()
+        self.acknowledge()
 
 
 def create_skill():
