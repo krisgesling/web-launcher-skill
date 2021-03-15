@@ -44,8 +44,11 @@ class WebLauncher(MycroftSkill):
         requested_site = message.data.get('SiteName')
         if requested_site in self.sites:
             site_url = self.sites[requested_site]
-            args = ['xdg-open', site_url]
-            current_process = subprocess.Popen(args)
+            if self.gui.connected:
+                self.gui.show_url(site_url)
+            else:
+                args = ['xdg-open', site_url]
+                current_process = subprocess.Popen(args)
             self.bus.emit(Message('skill.weblauncher.opening', {
                                       'site_name': requested_site,
                                       'site_url': site_url }))
