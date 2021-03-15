@@ -32,8 +32,8 @@ class WebLauncher(MycroftSkill):
         for site_name in self.sites:
             self.register_vocabulary(site_name.lower(), 'SiteName')
 
-    @intent_handler(IntentBuilder('LaunchSite').require('Launch')
-                                               .require('SiteName'))
+    @intent_handler(IntentBuilder('LaunchSite').require('SiteName')
+                                               .require('Launch'))
     def handle_launch_site(self, message):
         """Launch known site using xdg-open url.
         
